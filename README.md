@@ -3,20 +3,22 @@ It's a vue app coded by Ruochen Xie, which has the function of dynamic creating 
 
 This is a personal project.
 
+*STATUS: Unfinished*
+
 ## Example of output
 If running locally, it's a website which has a url: http://localhost:8081/#/.
 
 ## Design of the code
- 1. connect db
- 2. define router
- 2. define session
- 3. execute sql using session
- 4. import results into html templates or redirect to another url
+ 1. The basic HTML in src/views/Home.vue and the browser loaded [PDF file](./Personal%20Resume.pdf) (finished)
+ 2. Dynamic edit the content
+ 3. Service connection and DB Storage
+ 4. Investigate OAuth and build third-party sign-in
+ 5. Prepare for Deployment
 
 ## Improvements
- 1. Implement a decorator function to check user login status
- 2. Implement the ON DELETE CASCADE
- 3. Include the csrf_token, flask-seasurf, dealing with the CRUD problem
+ 1. Format the PDF from server side
+ 2. Progress bar
+ 3. Tree format
 
 ## How to run it
 
@@ -29,20 +31,5 @@ If running locally, it's a website which has a url: http://localhost:8081/#/.
   ```
     $ npm run serve
   ```
-  
-### Set up
-  The web server contains four features:
-
-  1. The CRUD of restaurant table
-  2. The CRUD of menu table
-  3. Return menu info using JSON
-  4. authentication of github account
-
-  run it using 
-  ```
-    python webserverUsingFlask.py
-  ```
 
 ## Application Code Style
-
-  Passing the pycodestyle (`pycodestyle --first webserverUsingFlask.py`) checking.

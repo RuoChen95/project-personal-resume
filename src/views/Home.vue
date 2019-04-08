@@ -17,7 +17,7 @@
     <section id="self-intro">
       <p class="title">个人简介</p>
       <p class="intro">
-        在比特大陆工作两年后，目前我有更大的理想希望能学习更加广泛更加具有影响力。所以我现在正在coursera上学习算法，并完成了udacity上的全栈开发课程。除此之外，我也计划于2020年去香港/新加坡进一步拓展自己的学历。在未来，我希望能够建造出属于自己的网络应用，类似于notion以及transfix，使用最先进的技术，来让人们更为高效的工作。目前希望在工作中锻炼自己的实践技能。<br>技能：JavaScript, Python, Flask, Node.js, Vue.js, SQL, HTML, CSS, jQuery, Boostrap
+        在比特大陆工作两年后，目前我有更大的理想希望能学习更加广泛更加具有影响力。所以我现在正在coursera上学习算法，并完成了udacity上的全栈开发课程。除此之外，我也计划于2020年去香港/新加坡进一步拓展自己的学历。在未来，我希望能够建造出属于自己的网络应用，类似于notion以及transfix，使用最先进的技术，帮助人们更为高效的工作。目前希望在工作中进一步锻炼自己的后端开发能力。<br>技能：JavaScript, Python, Flask, Node.js, Vue.js, SQL, Apache, Vagrant
       </p>
     </section>
     <section id="work-intro">
@@ -73,7 +73,7 @@
             <p class="subTitle">作品文件：</p>
             <p>Logs analysis: 使用了内部数据库信息来发现读者喜欢什么种类的文章</p>
             <p>Item catalog: 具有对于饭店列表、菜单列表的增删改查功能和连接了外部登录API，用到了Flask以及SqlAlchemy</p>
-            <p>Linux server configuration: 基本的linux服务器配置，使用了Apache、wsgi以及Flask</p>
+            <p>Linux server configuration: 在Amazon Lightsail VPS上实现Linux服务器应用配置以及端口安全配置，使用了Apache、wsgi以及Flask</p>
           </div>
           <div class="link-list">
             <p class="subTitle">相关链接：</p>
@@ -128,7 +128,7 @@
           <p class="name">Front end Certification</p>
           <p>
             <span class="authority">Freecodecamp, </span>
-            <span class="code">证书编号: https://www.freecodecamp.cn/ruochen95</span>
+            <span class="code">证书连接: https://www.freecodecamp.cn/ruochen95</span>
           </p>
           <p class="time">2016 年</p>
           <div class="project-list">
