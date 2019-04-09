@@ -148,11 +148,28 @@
 <script>
 // @ is an alias to /src
 import HelloWorld from "@/components/HelloWorld.vue";
+import axios from 'axios'
 
 export default {
   name: "home",
   components: {
     HelloWorld
+  },
+  data() {
+    return {
+      list: {}
+    }
+  },
+  mounted() {
+    this.init()
+  },
+  methods: {
+    init: function() {
+      axios.get('http://0.0.0.0:5001/person/1/JSON')
+        .then(function(response) {
+          console.log(response)
+        })
+    }
   }
 };
 </script>

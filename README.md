@@ -5,8 +5,14 @@ This is a personal project.
 
 *STATUS: Unfinished*
 
+## 为什么要做这个项目？
+ - social: 帮助程序员填写简历，目前linkin、超级CV等产品都没有符合自己的需求
+ - personal: 个人练习全栈知识
+
 ## Example of output
-If running locally, it's a website which has a url: http://localhost:8081/#/.
+If running locally, it's a website which has a url: http://192.168.0.101:8081/.
+
+Edition function: http://192.168.0.101:8081/edition?user=1
 
 ## Design of the code
  1. The basic HTML in src/views/Home.vue and the browser loaded [PDF file](./Personal%20Resume.pdf) (finished)
@@ -31,5 +37,13 @@ If running locally, it's a website which has a url: http://localhost:8081/#/.
   ```
     $ npm run serve
   ```
+  
+### Launching the server side
+
+ - Direction: https://github.com/RuoChen95/project-personal-resume-server
 
 ## Application Code Style
+
+## source
+  - 防止url最后面出现哈希：https://router.vuejs.org/zh/guide/essentials/history-mode.html
+  - Cannot set property 'xx' of undefined: https://stackoverflow.com/questions/43613115/vue-cannot-set-property-of-undefined-in-promise
