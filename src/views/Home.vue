@@ -28,7 +28,7 @@
           <div class="des">
             <span class="title">Web前端工程师</span>
             <span class="company">Bitmain</span>
-            <span class="time">2017 年 4 月 – 2018 年 1 月 · 1 年 10 个月</span>
+            <span class="time">2017 年 4 月 – 2019 年 1 月 · 1 年 10 个月</span>
             <span class="location">中国 北京</span>
             <div class="description">
               <p>工作内容主要是公司官网商城的单页面重构工作以及旧有JSP项目的维护工作，具体包括了：</p>
@@ -245,6 +245,8 @@ export default {
     }
   }
   section#self-intro {
+    display: flex;
+    flex-direction: column;
     p.intro {
       font-size: 14px;
     }

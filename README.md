@@ -16,8 +16,8 @@ Edition function: http://192.168.0.101:8081/edition?user=1
 
 ## Design of the code
  1. The basic HTML in src/views/Home.vue and the browser loaded [PDF file](./Personal%20Resume.pdf) (finished)
- 2. Dynamic edit the content
- 3. Service connection and DB Storage
+ 2. Dynamic edit the content(finished)
+ 3. Service connection and DB Storage(finished)
  4. Investigate OAuth and build third-party sign-in
  5. Prepare for Deployment
 

@@ -3,21 +3,25 @@
     <section id="header">
       <div class="left">
         <p class="name" @click="changeEditCondition" >{{personInfo.name}}</p>
-        <textarea v-model="personInfo.name" v-show="editPersonInfo" @blur="save" ref="editPersonInfo"></textarea>
+        <textarea v-model="personInfo.name" v-show="editCondition.personInfo" @blur="save" ref="editPersonInfo"></textarea>
       </div>
     </section>
     <section id="self-intro">
       <p class="title">个人简介</p>
-      <p class="intro" v-html="ResumeItems[0].content"></p>
+      <p class="intro" v-html="ResumeItems[0].content" @click="editCondition.selfIntro = true"></p>
+      <textarea v-model="ResumeItems[0].content" v-show="editCondition.selfIntro" @blur="save"></textarea>
     </section>
     <section id="work-intro">
       <div>
         <p class="title">工作经历</p>
         <div class="works">
-          <div class="logo"><img src="../assets/work_logo_1.png"></div>
-          <div class="description" v-html="ResumeItems[1].content">
+          <!--<div class="logo"><img src="../assets/work_logo_1.png"></div>-->
+          <div class="des">
+            <div class="description" v-html="ResumeItems[1].content" @click="editCondition.workIntro = true"></div>
+            <textarea v-model="ResumeItems[1].content" v-show="editCondition.workIntro" @blur="save"></textarea>
           </div>
         </div>
+
       </div>
     </section>
   </div>
@@ -41,7 +45,11 @@
           }
         ],
         personInfo: {},
-        editPersonInfo: false,
+        editCondition: {
+          personInfo: false,
+          selfIntro: false,
+          workIntro: false,
+        },
 
         personId: this.$route.query.user
       }
@@ -62,16 +70,35 @@
           })
       },
       changeEditCondition: function() {
-        this.editPersonInfo = true;
-        this.cache = this.personInfo.name;
+        this.editCondition.personInfo = true;
         this.$refs.editPersonInfo.focus(); // 存在问题
       },
       save: function() {
-        this.editPersonInfo = false;
-        axios.post('http://0.0.0.0:5001/person/saveName/'+ this.personId + '/' +this.personInfo.name)
-          .then(function(response) {
-            console.log(response.data);
+        if (this.editCondition.personInfo == true) {
+          this.editCondition.personInfo = false;
+          axios.post('http://0.0.0.0:5001/person/saveName/'+ this.personId + '/' +this.personInfo.name)
+            .then(function(response) {
+              console.log(response.data);
+            })
+        }
+        if (this.editCondition.selfIntro == true) {
+          this.editCondition.selfIntro = false;
+          axios.post('http://0.0.0.0:5001/person/saveIntro/'+ this.personId, {
+            content: this.ResumeItems[0].content
           })
+            .then(function(response) {
+              console.log(response.data);
+            })
+        }
+        if (this.editCondition.workIntro == true) {
+          this.editCondition.workIntro = false;
+          axios.post('http://0.0.0.0:5001/person/saveWorkExperience/'+ this.personId, {
+            content: this.ResumeItems[1].content
+          })
+            .then(function(response) {
+              console.log(response.data);
+            })
+        }
       }
     }
   };
@@ -148,6 +175,8 @@
     }
   }
   section#self-intro {
+    display: flex;
+    flex-direction: column;
     p.intro {
       font-size: 14px;
     }
