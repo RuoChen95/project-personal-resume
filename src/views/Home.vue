@@ -24,7 +24,7 @@
       <div>
         <p class="title">工作经历</p>
         <div class="works">
-          <div class="logo"><img src="../assets/work_logo_1.png"></div>
+          <div class="logo"><img src="../assets/img/work_logo_1.png"></div>
           <div class="des">
             <span class="title">Web前端工程师</span>
             <span class="company">Bitmain</span>
@@ -56,7 +56,7 @@
           <p class="activity">社团活动：干事，学生会，华北电力大学，2013-2014</p>
           <p class="honor">荣誉：2013-2014 华北电力大学优秀学生</p>
         </div>
-        <div><img src="../assets/education_logo_1.jpeg"></div>
+        <div><img src="../assets/img/education_logo_1.jpeg"></div>
       </div>
     </section>
     <section id="quantification-intro">
@@ -80,7 +80,7 @@
             <p>https://confirm.udacity.com/4TT6CGMD</p>
           </div>
         </div>
-        <div><img src="../assets/quantification_logo_1.png"></div>
+        <div><img src="../assets/img/quantification_logo_1.png"></div>
       </div>
 
       <div class="qua">
@@ -103,7 +103,7 @@
             <p>https://www.coursera.org/account/accomplishments/verify/Q8KEBDEUEV4K</p>
           </div>
         </div>
-        <div><img src="../assets/quantification_logo_2.jpeg"></div>
+        <div><img src="../assets/img/quantification_logo_2.jpeg"></div>
       </div>
 
       <div class="qua">
@@ -120,7 +120,7 @@
             <p>Website Optimization: 优化网页性能，使其达到目标的 PageSpeed 分数，并以 60 帧/秒的速度运行。</p>
           </div>
         </div>
-        <div><img src="../assets/quantification_logo_1.png"></div>
+        <div><img src="../assets/img/quantification_logo_1.png"></div>
       </div>
 
       <div class="qua">
@@ -138,7 +138,7 @@
             <p>Build a Simon Game: 借助用户监听模拟了Simon Game：色块随机亮起，并能记录以及响应用户点击，如果用户点击正确，会延长随机序列，如果用户点击错误，会有提示。</p>
           </div>
         </div>
-        <div><img src="../assets/quantification_logo_3.png"></div>
+        <div><img src="../assets/img/quantification_logo_3.png"></div>
       </div>
 
     </section>
@@ -157,19 +157,11 @@ export default {
   },
   data() {
     return {
-      list: {}
     }
   },
   mounted() {
-    this.init()
   },
   methods: {
-    init: function() {
-      axios.get('http://0.0.0.0:5001/person/1/JSON')
-        .then(function(response) {
-          console.log(response)
-        })
-    }
   }
 };
 </script>

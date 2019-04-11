@@ -2,13 +2,22 @@
   <div>
     <section id="header">
       <div class="left">
-        <p class="name" @click="changeEditCondition" >{{personInfo.name}}</p>
-        <textarea v-model="personInfo.name" v-show="editCondition.personInfo" @blur="save" ref="editPersonInfo"></textarea>
+        <p class="name"
+           @click="changeEditCondition"
+           v-show="!editCondition.personInfo">
+          {{personInfo.name}}
+        </p>
+        <textarea
+            v-model="personInfo.name"
+            v-show="editCondition.personInfo"
+            @blur="save"
+            ref="editPersonInfo">
+        </textarea>
       </div>
     </section>
     <section id="self-intro">
       <p class="title">个人简介</p>
-      <p class="intro" v-html="ResumeItems[0].content" @click="editCondition.selfIntro = true"></p>
+      <p class="intro" v-html="ResumeItems[0].content" @click="editCondition.selfIntro = true" v-show="!editCondition.selfIntro"></p>
       <textarea v-model="ResumeItems[0].content" v-show="editCondition.selfIntro" @blur="save"></textarea>
     </section>
     <section id="work-intro">
@@ -17,7 +26,7 @@
         <div class="works">
           <!--<div class="logo"><img src="../assets/work_logo_1.png"></div>-->
           <div class="des">
-            <div class="description" v-html="ResumeItems[1].content" @click="editCondition.workIntro = true"></div>
+            <div class="description" v-html="ResumeItems[1].content" @click="editCondition.workIntro = true" v-show="!editCondition.workIntro"></div>
             <textarea v-model="ResumeItems[1].content" v-show="editCondition.workIntro" @blur="save"></textarea>
           </div>
         </div>
@@ -44,7 +53,9 @@
             content: ''
           }
         ],
-        personInfo: {},
+        personInfo: {
+          name: this.$store.state.personName
+        },
         editCondition: {
           personInfo: false,
           selfIntro: false,
@@ -60,14 +71,16 @@
       this.init()
     },
     methods: {
-      init: async function() {
+      init: function() {
         let that = this;
-        axios.get('http://0.0.0.0:5001/person/'+ this.personId +'/JSON')
-          .then(function(response) {
-            console.log(response.data.ResumeItems);
-            that.ResumeItems = response.data.ResumeItems;
-            that.personInfo = response.data.PersonInfo;
-          })
+        if (this.personId != 'new') {
+          axios.get('http://0.0.0.0:5000/person/'+ this.personId +'/JSON')
+            .then(function(response) {
+              console.log(response.data.ResumeItems);
+              that.ResumeItems = response.data.ResumeItems;
+              that.personInfo = response.data.PersonInfo;
+            })
+        }
       },
       changeEditCondition: function() {
         this.editCondition.personInfo = true;
@@ -76,14 +89,14 @@
       save: function() {
         if (this.editCondition.personInfo == true) {
           this.editCondition.personInfo = false;
-          axios.post('http://0.0.0.0:5001/person/saveName/'+ this.personId + '/' +this.personInfo.name)
+          axios.post('http://0.0.0.0:5000/person/saveName/'+ this.personId + '/' +this.personInfo.name)
             .then(function(response) {
               console.log(response.data);
             })
         }
         if (this.editCondition.selfIntro == true) {
           this.editCondition.selfIntro = false;
-          axios.post('http://0.0.0.0:5001/person/saveIntro/'+ this.personId, {
+          axios.post('http://0.0.0.0:5000/person/saveIntro/'+ this.personId, {
             content: this.ResumeItems[0].content
           })
             .then(function(response) {
@@ -92,7 +105,7 @@
         }
         if (this.editCondition.workIntro == true) {
           this.editCondition.workIntro = false;
-          axios.post('http://0.0.0.0:5001/person/saveWorkExperience/'+ this.personId, {
+          axios.post('http://0.0.0.0:5000/person/saveWorkExperience/'+ this.personId, {
             content: this.ResumeItems[1].content
           })
             .then(function(response) {

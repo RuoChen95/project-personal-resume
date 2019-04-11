@@ -14,11 +14,13 @@ If running locally, it's a website which has a url: http://192.168.0.101:8081/.
 
 Edition function: http://192.168.0.101:8081/edition?user=1
 
+Resume List: http://192.168.0.101:8081/view
+
 ## Design of the code
  1. The basic HTML in src/views/Home.vue and the browser loaded [PDF file](./Personal%20Resume.pdf) (finished)
  2. Dynamic edit the content(finished)
  3. Service connection and DB Storage(finished)
- 4. Investigate OAuth and build third-party sign-in
+ 4. Investigate OAuth and build third-party sign-in(pending)
  5. Prepare for Deployment
 
 ## Improvements
@@ -44,6 +46,9 @@ Edition function: http://192.168.0.101:8081/edition?user=1
 
 ## Application Code Style
 
-## source
-  - 防止url最后面出现哈希：https://router.vuejs.org/zh/guide/essentials/history-mode.html
-  - Cannot set property 'xx' of undefined: https://stackoverflow.com/questions/43613115/vue-cannot-set-property-of-undefined-in-promise
+## Source
+  - Vue-router History mode - 防止url最后面出现哈希：https://router.vuejs.org/zh/guide/essentials/history-mode.html
+  - Axios: https://github.com/axios/axios
+  - Vuex-persist: https://www.npmjs.com/package/vuex-persist
+  - Others:
+    - Deal Error Log: Cannot set property 'xx' of undefined: https://stackoverflow.com/questions/43613115/vue-cannot-set-property-of-undefined-in-promise
