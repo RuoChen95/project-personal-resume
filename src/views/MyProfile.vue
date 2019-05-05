@@ -2,46 +2,78 @@
   <div>
     <section id="header">
       <div class="left">
-        <p class="name"
-           @click="changeEditCondition"
-           v-show="!editCondition.personInfo">
-          {{personInfo.name}}
+        <p class="name">解若琛</p>
+        <p class="place">浙江 杭州 | 计算机软件</p>
+      </div>
+      <div class="right">
+        <p class="education">教育背景：华北电力大学</p>
+        <p class="connect">
+          电话：17600370962
+          <br>
+          邮箱：xrc_1995@163.com
+          <br>
+          Github: Ruochen95
         </p>
-        <textarea
-            v-model="personInfo.name"
-            v-show="editCondition.personInfo"
-            @blur="save"
-            ref="editPersonInfo">
-        </textarea>
       </div>
     </section>
     <section id="self-intro">
-      <p class="title">个人简介</p>
-      <p class="intro" v-html="ResumeItems[0].content" @click="editCondition.selfIntro = true" v-show="!editCondition.selfIntro"></p>
-      <textarea v-model="ResumeItems[0].content" v-show="editCondition.selfIntro" @blur="save"></textarea>
+      <p class="title">专业技能</p>
+      <p class="intro">
+      <ul>
+        <li>前端语言：熟练应用HTML5，CSS3，JavaScript进行页面开发，了解ES6；</li>
+        <li>前端框架：熟练使用Vue.js，Vuex, Vue-Router进行单页面开发，了解jQuery，Boostrap，Lodash；</li>
+        <li>项目构建：了解Webpack，npm打包工具，熟练使用Git；</li>
+        <li>服务端相关：了解Node.js，SQL以及Flask后端框架；</li>
+        <li>云开发平台：了解微信公众号开发以及VPS应用部署；</li>
+      </ul>
+      </p>
     </section>
     <section id="work-intro">
       <div>
         <p class="title">工作经历</p>
         <div class="works">
-          <!--<div class="logo"><img src="../assets/work_logo_1.png"></div>-->
+          <div class="logo"><img src="../assets/img/work_logo_1.png"></div>
           <div class="des">
-            <div class="description" v-html="ResumeItems[1].content" @click="editCondition.workIntro = true" v-show="!editCondition.workIntro"></div>
-            <textarea v-model="ResumeItems[1].content" v-show="editCondition.workIntro" @blur="save"></textarea>
+            <span class="title">Web前端工程师</span>
+            <span class="company">Bitmain</span>
+            <span class="time">2017 年 4 月 – 2019 年 1 月 · 1 年 10 个月</span>
+            <span class="location">中国 北京</span>
+            <div class="description">
+              <p>工作内容主要是旧有JSP项目的维护以及官网商城的单页面重构工作，具体包括了：</p>
+              <ul>
+                <li>负责旧有项目的维护以及重构工作</li>
+                <li>部分项目经验：</li>
+                <li>手机端单页面项目</li>
+                <ul>
+                  <li>主要负责商品展示、商品详情、购物车页面以及个人中心的优惠券部分</li>
+                  <li>基于Vant移动端Vue组件库构建项目，通过敏捷开发提高开发效率</li>
+                  <li>在一个月的开发周期下完成基本功能，为了减少服务端压力，增加了图片懒加载以及用户输入频控功能</li>
+                </ul>
+                <li>Landing Page项目</li>
+                <ul>
+                  <li>前期使用JSP开发，之后用Vue进行重写</li>
+                  <li>基于animate.css构建动画功能</li>
+                </ul>
+                <li>其他项目</li>
+                <ul>
+                  <li>售后微信小程序</li>
+                  <li>PC端个人中心项目</li>
+                </ul>
+              </ul>
+            </div>
           </div>
         </div>
-
       </div>
     </section>
     <section id="education-intro">
       <p class="title">教育背景</p>
       <div class="edu">
         <div>
-          <p class="place">XX大学</p>
-          <p class="content">XX专业</p>
+          <p class="place">华北电力大学</p>
+          <p class="content">工学学士，环境科学专业，top20%</p>
           <p class="time">2013年 - 2017年</p>
-          <p class="activity">社团活动：XX</p>
-          <p class="honor">荣誉：XX</p>
+          <p class="activity">社团活动：干事，学生会，华北电力大学，2013-2014</p>
+          <p class="honor">荣誉：2013-2014 华北电力大学优秀学生</p>
         </div>
         <div><img src="../assets/img/education_logo_1.jpeg"></div>
       </div>
@@ -133,87 +165,28 @@
 </template>
 
 <script>
+  // @ is an alias to /src
+  import HelloWorld from "@/components/HelloWorld.vue";
   import axios from 'axios'
 
   export default {
-    name: "edition",
+    name: "home",
     components: {
+      HelloWorld
     },
     data() {
       return {
-        ResumeItems: [
-          {
-            content: ''
-          },
-          {
-            content: ''
-          }
-        ],
-        personInfo: {
-          name: this.$store.state.personName
-        },
-        editCondition: {
-          personInfo: false,
-          selfIntro: false,
-          workIntro: false,
-        },
-
-        personId: this.$route.query.user || 1
       }
-    },
-    computed: {
     },
     mounted() {
-      this.init()
     },
     methods: {
-      init: function() {
-        let that = this;
-        if (this.personId != 'new') {
-          axios.get('http://0.0.0.0:5000/person/'+ this.personId +'/JSON')
-            .then(function(response) {
-              console.log(response.data.ResumeItems);
-              that.ResumeItems = response.data.ResumeItems;
-              that.personInfo = response.data.PersonInfo;
-            })
-        }
-      },
-      changeEditCondition: function() {
-        this.editCondition.personInfo = true;
-        this.$refs.editPersonInfo.focus(); // 存在问题
-      },
-      save: function() {
-        if (this.editCondition.personInfo == true) {
-          this.editCondition.personInfo = false;
-          axios.post('http://0.0.0.0:5000/person/saveName/'+ this.personId + '/' +this.personInfo.name)
-            .then(function(response) {
-              console.log(response.data);
-            })
-        }
-        if (this.editCondition.selfIntro == true) {
-          this.editCondition.selfIntro = false;
-          axios.post('http://0.0.0.0:5000/person/saveIntro/'+ this.personId, {
-            content: this.ResumeItems[0].content
-          })
-            .then(function(response) {
-              console.log(response.data);
-            })
-        }
-        if (this.editCondition.workIntro == true) {
-          this.editCondition.workIntro = false;
-          axios.post('http://0.0.0.0:5000/person/saveWorkExperience/'+ this.personId, {
-            content: this.ResumeItems[1].content
-          })
-            .then(function(response) {
-              console.log(response.data);
-            })
-        }
-      }
     }
   };
 </script>
 <style lang="less">
   section {
+    width: 800px;
     box-shadow:
         0 1px 1px rgba(0,0,0,0.15),
         -1px 0 0 rgba(0,0,0,0.03),
@@ -222,7 +195,7 @@
     border: 1px solid rgba(0,0,0,0.12);
     padding: 30px 35px;
     background: white;
-    margin-bottom: 10px;
+    margin: 0 auto 10px;
 
     text-align: left;
     p.title {
@@ -369,6 +342,7 @@
   section#quantification-intro {
     padding: 0;
     font-size: 14px;
+    width: 872px;
     p.title {
       padding: 30px 35px 0 35px;
       margin: 0;

@@ -4,6 +4,7 @@ import Home from "./views/Home.vue";
 import Edition from "./views/Edition.vue";
 import View from "./views/View.vue";
 import Login from "./views/Login.vue";
+import MyProfile from "./views/MyProfile.vue";
 
 Vue.use(Router);
 
@@ -38,6 +39,11 @@ export default new Router({
       // which is lazy-loaded when the route is visited.
       component: () =>
         import(/* webpackChunkName: "about" */ "./views/About.vue")
+    },
+    {
+      path: "/my",
+      name: "MyProfile",
+      component: MyProfile
     },
   ]
 });
