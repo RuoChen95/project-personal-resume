@@ -1,25 +1,29 @@
 <template>
   <div>
-    <h1>简历列表</h1>
-    <div v-for="(person, index) in personList" :key="index" class="personList">
-      <p @click="$router.push({ path: `edition?user=${person.id}`})" class="personName">
-        {{person.name}}
-      </p>
-    </div>
-    <h1>我的简历</h1>
-    <div class="personList">
-      <p @click="$router.push({ path: `edition?user=new`})" class="personName" v-show="userName != ''">
-        {{userName}}
-      </p>
-    </div>
-    <button @click="$router.push({path: 'login'})">login</button>
-    <button @click="logout">logout</button>
+    <Base>
+      <h1>简历列表</h1>
+      <div v-for="(person, index) in personList" :key="index" class="personList">
+        <p @click="$router.push({ path: `/?user=${person.id}`})" class="personName">
+          {{person.name}}
+        </p>
+      </div>
+      <h1>我的简历</h1>
+      <div class="personList">
+        <p @click="$router.push({ path: `edition?user=new`})" class="personName" v-show="userName != ''">
+          {{userName}}
+        </p>
+      </div>
+    </Base>
   </div>
 </template>
 
 <script>
   import axios from 'axios'
+  import Base from '@/views/Base'
   export default {
+    components: {
+      Base
+    },
     data() {
       return {
         personList: [],

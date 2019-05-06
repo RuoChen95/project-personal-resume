@@ -1,18 +1,24 @@
 <template>
   <div>
-    <a id="githubLogin" href="https://github.com/login/oauth/authorize?client_id=f548cd0789dfb2387fdb&scope=user,public_repo"
-    v-if="!loading">
-      <button>Github Login</button>
-    </a>
-    <div v-show="loading">
-      <p>Loading...</p>
-    </div>
+    <Base>
+      <a id="githubLogin" href="https://github.com/login/oauth/authorize?client_id=f548cd0789dfb2387fdb&scope=user,public_repo"
+         v-if="!loading">
+        <button>Github Login</button>
+      </a>
+      <div v-show="loading">
+        <p>Loading...</p>
+      </div>
+    </Base>
   </div>
 </template>
 
 <script>
+  import Base from '@/views/Base'
   import axios from 'axios'
   export default {
+    components: {
+      Base
+    },
     name: "login",
     data() {
       return {
