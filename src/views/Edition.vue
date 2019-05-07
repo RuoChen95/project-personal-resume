@@ -1,24 +1,27 @@
 <template>
   <div>
+
     <section id="header">
       <div class="left">
-        <p class="name"
-           @click="changeEditCondition"
-           v-show="!editCondition.personInfo">
-          {{personInfo.name}}
-        </p>
-        <textarea
+        <basic-input
+            :placeholderKey="personInfo.name"
             v-model="personInfo.name"
-            v-show="editCondition.personInfo"
-            @blur="save"
-            ref="editPersonInfo">
-        </textarea>
+            :type="'h1'"
+            @inputBlur="save">
+        </basic-input>
       </div>
     </section>
+
     <section id="self-intro">
       <p class="title">个人简介</p>
       <p class="intro" v-html="ResumeItems[0].content" @click="editCondition.selfIntro = true" v-show="!editCondition.selfIntro"></p>
       <textarea v-model="ResumeItems[0].content" v-show="editCondition.selfIntro" @blur="save"></textarea>
+      <basic-input
+          :placeholderKey="ResumeItems[0].content"
+          :valueKey="ResumeItems[0].content"
+          :type="'textarea'"
+          @inputBlur="save">
+      </basic-input>
     </section>
     <section id="work-intro">
       <div>
@@ -134,12 +137,14 @@
 
 <script>
   import axios from 'axios'
+  import BasicInput from '../components/basicInput'
 
   export default {
     name: "edition",
     components: {
+      BasicInput
     },
-    data() {
+    data: function() {
       return {
         ResumeItems: [
           {
@@ -183,13 +188,11 @@
         this.$refs.editPersonInfo.focus(); // 存在问题
       },
       save: function() {
-        if (this.editCondition.personInfo == true) {
-          this.editCondition.personInfo = false;
-          axios.post('http://0.0.0.0:5000/person/saveName/'+ this.personId + '/' +this.personInfo.name)
-            .then(function(response) {
-              console.log(response.data);
-            })
-        }
+        this.editCondition.personInfo = false;
+        axios.post('http://0.0.0.0:5000/person/saveName/'+ this.personId + '/' +this.personInfo.name)
+          .then(function(response) {
+            console.log(response.data);
+          })
         if (this.editCondition.selfIntro == true) {
           this.editCondition.selfIntro = false;
           axios.post('http://0.0.0.0:5000/person/saveIntro/'+ this.personId, {
@@ -238,6 +241,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+
     p {
       margin: 0;
     }
